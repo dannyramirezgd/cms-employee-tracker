@@ -39,14 +39,9 @@ const viewFromDatabase = table => {
             `SELECT A.employee_id as id, 
             A.first_name as 'First Name', 
             A.last_name as 'Last Name', 
-            roles.role_id as 'Job Title',
-            roles.salary as Salary,
-            department.department_name as Department,
             B.first_name as 'Manager First Name', 
             B.last_name as 'Manager Last Name'
             FROM employee A
-            LEFT JOIN roles ON A.role_id = roles.role_id
-            LEFT JOIN department ON roles.department_id = department.department_id
             LEFT JOIN employee B on A.manager_id = B.employee_id
             ORDER BY A.manager_id DESC;
         `)
@@ -65,6 +60,24 @@ const viewFromDatabase = table => {
     }
 }
 
+const addToDatabase = async item => {
+    if (item === 'addToDepartment') {
+        const sql = `INSERT INTO department (department_name) VALUES (?)`
+        const request = await inquirer.prompt({
+            type:'input',
+            name:'department',
+            message:'What is the name of the Department you wish to add?'
+        });
+        return db.promise().execute(sql, [request.department], (err, result) => {
+            if(err) {
+                console.log('Error')
+            } else {
+                console.log('Success')
+            }
+        })
+    }
+}
+
 const init = async () => {
     console.log (`Please indicate desired request`);
 
@@ -78,7 +91,7 @@ const init = async () => {
             'View all employees',
             'View all employees by Manager',
             'View all employees by department',
-            'POST a department',
+            'Create a new department',
             'POST a role',
             'POST an employee',
             'PUT Employee Role',
@@ -108,9 +121,14 @@ async function requestActions(option) {
         case 'View all employees by Manager':
             const [managers] = await viewFromDatabase('managers');
             console.table(managers);
+            break;
         case 'View all employees by department':
             const [emplyByDept] = await viewFromDatabase('emplyByDept');
             console.table(emplyByDept);
+            break;
+        case 'Create a new department':
+            await addToDatabase('addToDepartment')
+            break;
         default:
             console.log('Try again');
             break;
