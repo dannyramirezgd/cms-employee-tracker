@@ -23,13 +23,13 @@ VALUES
 INSERT INTO employee (first_name, last_name, role_id, manager_id)
 VALUES
 -- these are the values inserted by the constructor based on input
-    ('Bill', 'Jenkins', 1, null),
-    ('Andy', 'Lilo', 2, null),
+    ('Bill', 'Jenkins', 1, 3),
+    ('Andy', 'Lilo', 2, 3),
     ('Becky', 'Bouchard', 3, null),
-    ('Ellen', 'Paige', 4, null),
-    ('Hughbert', 'Figsworth', 5, null),
+    ('Ellen', 'Paige', 4, 6),
+    ('Hughbert', 'Figsworth', 5, 6),
     ('Eleanor', 'Rigby', 6, null),
-    ('Adam', 'Driver', 7, null),
-    ('Chris', 'Devine', 8, null),
+    ('Adam', 'Driver', 7, 9),
+    ('Chris', 'Devine', 8, 9),
     ('Andrew', 'Filhouse', 9, null),
-    ('John', 'Kennedy', 10, null);
+    ('John', 'Kennedy', 10, 9);
