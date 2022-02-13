@@ -2,7 +2,7 @@ const inquirer = require('inquirer');
 const cTable = require('console.table');
 const viewFromDatabase = require('./lib/viewRequests')
 const { addToDatabase, deleteFromDatabase , updateEmployee} = require('./lib/crudRequests')
-
+const getBudget = require('./lib/budgetRequest')
 
 const sleep = (ms = 1000) => new Promise((r) => setTimeout(r, ms));
 
@@ -74,6 +74,10 @@ async function requestActions(option) {
             break;
         case 'Delete an employee':
             await deleteFromDatabase('employee')
+            break;
+        case 'View total budget by Department':
+            const [budgetRequest] = await getBudget()
+            console.table(budgetRequest);
             break;
         default:
             console.log('Try again');
