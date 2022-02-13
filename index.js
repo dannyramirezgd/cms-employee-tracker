@@ -1,7 +1,7 @@
 const inquirer = require('inquirer');
 const cTable = require('console.table');
 const viewFromDatabase = require('./lib/viewRequests')
-const { addToDatabase, deleteFromDatabase } = require('./lib/crudRequests')
+const { addToDatabase, deleteFromDatabase , updateEmployee} = require('./lib/crudRequests')
 
 
 const sleep = (ms = 1000) => new Promise((r) => setTimeout(r, ms));
@@ -22,7 +22,7 @@ const init = async () => {
             'Create a new department',
             'Create a new role',
             'Create a new employee',
-            'PUT Employee Role',
+            'Update an Employee Role',
             'DELETE department',
             'DELETE role',
             'DELETE employee',
@@ -62,6 +62,9 @@ async function requestActions(option) {
             break;
         case 'Create a new employee':
             await addToDatabase('newEmployee')
+            break;
+        case 'Update an Employee Role':
+            await updateEmployee()
             break;
         default:
             console.log('Try again');
