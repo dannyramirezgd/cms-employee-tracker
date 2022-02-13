@@ -21,7 +21,7 @@ const init = async () => {
             'View all employees by department',
             'Create a new department',
             'Create a new role',
-            'POST an employee',
+            'Create a new employee',
             'PUT Employee Role',
             'DELETE department',
             'DELETE role',
@@ -59,6 +59,9 @@ async function requestActions(option) {
             break;
         case 'Create a new role':
             await addToDatabase('newRole')
+            break;
+        case 'Create a new employee':
+            await addToDatabase('newEmployee')
             break;
         default:
             console.log('Try again');
