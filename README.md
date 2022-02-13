@@ -33,6 +33,7 @@ User must be familiar with node.js, inquirer, mysql
 https://github.com/dannyramirezgd/cms-employee-tracker
 
 ## Video Walkthrough
+https://watch.screencastify.com/v/4S0ZzsWrIDu4gzzrEua6
 
 ## Contributing
 If you are looking to contribute you can for example: 
