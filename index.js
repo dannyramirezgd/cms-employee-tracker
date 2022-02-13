@@ -23,9 +23,9 @@ const init = async () => {
             'Create a new role',
             'Create a new employee',
             'Update an Employee Role',
-            'DELETE department',
-            'DELETE role',
-            'DELETE employee',
+            'Delete a department',
+            'Delete a role',
+            'Delete an employee',
             'View total budget by Department'
         ],
     });
@@ -65,6 +65,15 @@ async function requestActions(option) {
             break;
         case 'Update an Employee Role':
             await updateEmployee()
+            break;
+        case 'Delete a department':
+            await deleteFromDatabase('department')
+            break;
+        case 'Delete a role':
+            await deleteFromDatabase('role')
+            break;
+        case 'Delete an employee':
+            await deleteFromDatabase('employee')
             break;
         default:
             console.log('Try again');
